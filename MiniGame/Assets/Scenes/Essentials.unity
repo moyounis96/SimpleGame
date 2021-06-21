@@ -1457,9 +1457,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Simple
+  m_text: 'Floor Is
 
-    Game'
+    LAAVA'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 0c9482f0b9291474b8f3921d11bc5ac8, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 0c9482f0b9291474b8f3921d11bc5ac8, type: 2}
@@ -1530,9 +1530,9 @@ MonoBehaviour:
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
   preserveNumbers: 1
   farsi: 1
-  originalText: 'Simple
+  originalText: 'Floor Is
 
-    Game'
+    LAAVA'
   fixTags: 1
   forceFix: 0
 --- !u!222 &1376903372
