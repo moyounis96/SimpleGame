@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,6 +10,15 @@ public class GameManager : MonoBehaviour
     {
         get { return _lastUnlocked; }
     }
+
+    public void FinishLevel()
+    {
+    }
+
+    public void Lose()
+    {
+    }
+
     void Awake()
     {
         Instance = this;
