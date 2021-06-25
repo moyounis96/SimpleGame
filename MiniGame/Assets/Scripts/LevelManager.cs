@@ -3,11 +3,14 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public UITransition mapPanel;
+    public bool isLastLevel = false;
     private UITransition uITransition;
     private bool showMap = false;
+
     void Awake()
     {
         uITransition = GetComponentInChildren<UITransition>();
+        GameManager.Instance.IsLastLevel(isLastLevel);
     }
     void Update()
     {
