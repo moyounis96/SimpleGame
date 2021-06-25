@@ -67,6 +67,8 @@ public class GameManager : MonoBehaviour
     }
     public void LoadScene(int index)
     {
+        winScreen.Hide();
+        loseScreen.Hide();
         Fader.Instance.Transition(delegate
         {
             SceneManager.LoadSceneAsync(index);
