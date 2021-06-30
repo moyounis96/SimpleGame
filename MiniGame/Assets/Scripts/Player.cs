@@ -4,8 +4,6 @@ using UnityEngine.SceneManagement;
 [RequireComponent(typeof(Rigidbody))]
 public class Player : MonoBehaviour
 {
-    private static float _score;
-    public static float BestScore = 0;
     public float speed, jumpForce;
     public static bool isControlling = true;
     private Rigidbody _rigidbody;
@@ -15,19 +13,9 @@ public class Player : MonoBehaviour
     private Vector3 groundNormal, move;
     private bool isGrounded;
 
-    public static float Score
-    {
-        get { return _score; }
-        set
-        {
-            _score = value;
-            if(_score > BestScore)
-            {
-                PlayerPrefs.SetFloat(Constants.BEST_SCORE_PREFS + SceneManager.GetActiveScene().buildIndex, _score);
-                BestScore = _score;
-            }
-        }
-    }
+    public static float BestScore = 0;
+    public static float Score;
+
     void Awake()
     {
         _rigidbody = GetComponent<Rigidbody>();
@@ -36,15 +24,17 @@ public class Player : MonoBehaviour
     void OnEnable()
     {
         BestScore = PlayerPrefs.GetFloat(Constants.BEST_SCORE_PREFS + SceneManager.GetActiveScene().buildIndex, 0);
+        Score = 0;
         isControlling = true;
     }
     void Update()
     {
         if (!isControlling) return;
+        Score += Time.deltaTime;
         h = Input.GetAxis("Horizontal");
         v = Input.GetAxis("Vertical");
         camForward = Vector3.Scale(cam.forward, new Vector3(1, 0, 1)).normalized;
-        move = v * camForward + h * cam.right;
+        move = v * camForward + h * cam.right; //vector(h*right,YYYYY,v.forward)
         CheckGroundStatus();
         move = Vector3.ProjectOnPlane(move, groundNormal);
         _rigidbody.position += move * Time.deltaTime * speed;

@@ -1,16 +1,22 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class LevelManager : MonoBehaviour
 {
-    public UITransition mapPanel;
+    public UIFade mapPanel;
     public bool isLastLevel = false;
-    private UITransition uITransition;
-    private bool showMap = false;
+    private UIFade uIFade;
+    private bool q_showMap = false;
+    public static Vector3 groundMoveDirection;
+    public static float groundShrinkSpeed;
 
     void Awake()
     {
-        uITransition = GetComponentInChildren<UITransition>();
+        uIFade = GetComponentInChildren<UIFade>();
         GameManager.Instance.IsLastLevel(isLastLevel);
+        int levelIndex = SceneManager.GetActiveScene().buildIndex;
+        groundShrinkSpeed = Random.Range(0.01f, levelIndex/10.0f);
+        groundMoveDirection = Vector3.right * Random.Range(0.0f, levelIndex) + Vector3.forward * Random.Range(0.0f, levelIndex);
     }
     void Update()
     {
@@ -19,23 +25,23 @@ public class LevelManager : MonoBehaviour
             if (!mapPanel.shown)
             {
                 ShowMap();
-                showMap = true;
+                q_showMap = true;
             }
         }
-        else if (showMap && mapPanel.shown)
+        else if (q_showMap && mapPanel.shown)
         {
             HideMap();
-            showMap = false;
+            q_showMap = false;
         }
     }
     public void ShowMap()
     {
         mapPanel.Show();
-        uITransition.Hide();
+        uIFade.Hide();
     }
     public void HideMap()
     {
-        uITransition.Show();
+        uIFade.Show();
         mapPanel.Hide();
     }
     public void LevelsBtn()

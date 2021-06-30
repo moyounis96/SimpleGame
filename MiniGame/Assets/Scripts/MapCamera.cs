@@ -18,9 +18,8 @@ public class MapCamera : MonoBehaviour
     private void Update()
     {
         if (!Player.isControlling) return;
-        Bounds b = new Bounds(transform.position, Vector3.one);
+        Bounds b = new Bounds(finish.position, Vector3.one);
         b.Encapsulate(player.position);
-        Debug.Log(b.extents + " " + b.center + "  " + b.size);
         cam.orthographicSize = Mathf.Clamp(-(new Vector3(b.size.x,0,b.size.z).magnitude - 10), -80,-30);
         center = Vector3.Lerp(player.position, finish.position, 0.5f);
         transform.position = new Vector3(center.x, transform.position.y, center.z);

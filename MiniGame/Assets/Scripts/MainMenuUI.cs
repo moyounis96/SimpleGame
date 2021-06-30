@@ -3,12 +3,11 @@ using UnityEngine;
 public class MainMenuUI : MonoBehaviour
 {
     public static MainMenuUI Instance;
-    [HideInInspector] public UITransition uITransition;
+    [HideInInspector] public UIFade UIFade;
     private void Awake()
     {
         Instance = this;
-        uITransition = GetComponentInChildren<UITransition>();
-        LoadingScreen.Instance.Hide();
+        UIFade = GetComponentInChildren<UIFade>();
     }
     public void StartBtn()
     {
@@ -16,8 +15,8 @@ public class MainMenuUI : MonoBehaviour
     }
     public void SettingsBtn()
     {
-        uITransition.Hide();
-        SettingsUI.Instance.uITransition.Show();
+        UIFade.Hide();
+        SettingsUI.Instance.UIFade.Show();
     }
     public void EndBtn()
     {

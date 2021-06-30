@@ -6,20 +6,20 @@ public class Fader : MonoBehaviour
 {
     public static Fader Instance;
     public float duration;
-    [HideInInspector] public UITransition uITransition;
+    [HideInInspector] public UIFade uIFade;
     private Action targetAction;
     void Awake()
     {
         Instance = this;
         DontDestroyOnLoad(gameObject);
-        uITransition = GetComponentInChildren<UITransition>();
-        duration = uITransition.Duration();
-        SceneManager.sceneLoaded += delegate { if(SceneManager.GetActiveScene().buildIndex != 0) Invoke("Hide", uITransition.Duration() + 0.5f); };
+        uIFade = GetComponentInChildren<UIFade>();
+        duration = uIFade.Duration();
+        SceneManager.sceneLoaded += delegate { if(SceneManager.GetActiveScene().buildIndex != 0) Invoke("Hide", uIFade.Duration() + 0.5f); };
     }
     public void Transition()
     {
         CancelInvoke();
-        uITransition.Show();
+        uIFade.Show();
         Invoke("Hide", duration + 0.5f);
     }
     public void Transition(Action action)
@@ -27,7 +27,7 @@ public class Fader : MonoBehaviour
         CancelInvoke();
         targetAction = action;
         Invoke("DoAction", duration);
-        uITransition.Show();
+        uIFade.Show();
     }
     private void DoAction()
     {
@@ -36,6 +36,6 @@ public class Fader : MonoBehaviour
     }
     private void Hide()
     {
-        uITransition.Hide();
+        uIFade.Hide();
     }
 }

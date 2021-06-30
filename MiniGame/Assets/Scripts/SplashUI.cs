@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class SplashUI : MonoBehaviour
 {
-    UITransition splash;
+    UIFade splash;
     void Awake()
     {
-        splash = GetComponentInChildren<UITransition>();
+        splash = GetComponentInChildren<UIFade>();
     }
     void Start()
     {
